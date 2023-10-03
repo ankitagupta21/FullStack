@@ -56,27 +56,26 @@ function Login() {
       isValid = false;
     }
     if (isValid) {
-      history("/home", { state: { id: email, name: "Ankita" } });
-      // try {
-      //   await axios
-      //     .post("http://localhost:8000/", {
-      //       email,
-      //       password,
-      //     })
-      //     .then((res) => {
-      //       if (res.data === "exist") {
-      //         history("/home", { state: { id: email } });
-      //       } else if (res.data === "notexist") {
-      //         alert("User have not sign up");
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       alert("wrong details");
-      //       console.log(e);
-      //     });
-      // } catch (e) {
-      //   console.log(e);
-      // }
+      try {
+        await axios
+          .post("http://localhost:3000/", {
+            email,
+            password,
+          })
+          .then((res) => {
+            if (res.data === "exist") {
+              history("/home", { state: { id: email } });
+            } else if (res.data === "notexist") {
+              alert("User have not sign up");
+            }
+          })
+          .catch((e) => {
+            alert("wrong details");
+            console.log(e);
+          });
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 

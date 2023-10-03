@@ -69,28 +69,27 @@ function Register() {
       isValid = false;
     }
     if (isValid) {
-      history("/home", { state: { id: email, name: name } });
-      // try {
-      //   await axios
-      //     .post("http://localhost:3000/register", {
-      //       name,
-      //       email,
-      //       password,
-      //     })
-      //     .then((res) => {
-      //       if (res.data === "exist") {
-      //         alert("User already exists");
-      //       } else if (res.data === "notexist") {
-      //         history("/home", { state: { id: email, name: name } });
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       alert("wrong details");
-      //       console.log(e);
-      //     });
-      // } catch (e) {
-      //   console.log(e);
-      // }
+      try {
+        await axios
+          .post("http://localhost:3000/register", {
+            name,
+            email,
+            password,
+          })
+          .then((res) => {
+            if (res.data === "exist") {
+              alert("User already exists");
+            } else if (res.data === "notexist") {
+              history("/home", { state: { id: email, name: name } });
+            }
+          })
+          .catch((e) => {
+            alert("wrong details");
+            console.log(e);
+          });
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 
