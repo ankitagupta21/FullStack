@@ -62,26 +62,33 @@ function ForgetPassword() {
       setPassword("");
       setEmailError("");
       setPasswordError("");
-      // try {
-      //   await axios
-      //     .post("http://localhost:8000/", {
-      //       email,
-      //       password,
-      //     })
-      //     .then((res) => {
-      //       if (res.data === "exist") {
-      //         history("/home", { state: { id: email } });
-      //       } else if (res.data === "notexist") {
-      //         alert("User have not sign up");
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       alert("wrong details");
-      //       console.log(e);
-      //     });
-      // } catch (e) {
-      //   console.log(e);
-      // }
+      try {
+        axios
+          .post("http://localhost:3000/resetpassword", {
+            email,
+            password,
+          })
+          .then((res) => {
+            if (res.data === "success") {
+              setChangedPassword(true);
+              setEmail("");
+              setPassword("");
+              setEmailError("");
+              setPasswordError("");
+              alert("Password changed successfully");
+              history("/");
+            } else {
+              setChangedPassword(false);
+              alert("Email not registered");
+            }
+          })
+          .catch((err) => {
+            alert("Email not registered");
+            console.log(err);
+          });
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 

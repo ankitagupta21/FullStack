@@ -63,8 +63,18 @@ function Login() {
             password,
           })
           .then((res) => {
-            if (res.data === "exist") {
-              history("/home", { state: { id: email } });
+            if (res.data.message === "exist") {
+              history("/home", {
+                state: {
+                  id: email,
+                  name: res.data.name,
+                  phoneNo: res.data.phoneNo,
+                  rollNo: res.data.rollNo,
+                  year: res.data.year,
+                  branch: res.data.branch,
+                  section: res.data.section,
+                },
+              });
             } else if (res.data === "notexist") {
               alert("User have not sign up");
             }

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./LogReg.css";
 
 function EditProfile() {
+  const location = useLocation();
+  console.log(location);
+  const email = location.state.id;
+  const name = location.state.name;
   const history = useNavigate();
-
-  const [phone, setPhone] = useState("");
+  const [phoneNo, setPhone] = useState("");
   const [rollNo, setRollNo] = useState("");
   const [branch, setBranch] = useState("");
   const [year, setYear] = useState("");
@@ -15,9 +18,9 @@ function EditProfile() {
   const [phoneError, setPhoneError] = React.useState("");
 
   const validatePhone = () => {
-    if (phone.length === 0) {
+    if (phoneNo.length === 0) {
       return true;
-    } else if (!phone.match(/^[0-9]{10}$/)) {
+    } else if (!phoneNo.match(/^[0-9]{10}$/)) {
       setPhoneError("Please enter valid phone number");
       return false;
     }
@@ -32,27 +35,44 @@ function EditProfile() {
       isValid = false;
     }
     if (isValid) {
-      history("/home", { state: { id: "ank@gmail.com", name: "Ankita" } });
-      // try {
-      //   await axios
-      //     .post("http://localhost:8000/", {
-      //       email,
-      //       password,
-      //     })
-      //     .then((res) => {
-      //       if (res.data === "exist") {
-      //         history("/home", { state: { id: email } });
-      //       } else if (res.data === "notexist") {
-      //         alert("User have not sign up");
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       alert("wrong details");
-      //       console.log(e);
-      //     });
-      // } catch (e) {
-      //   console.log(e);
-      // }
+      try {
+        await axios
+          .post("http://localhost:3000/editprofile", {
+            email,
+            phoneNo,
+            rollNo,
+            branch,
+            year,
+            section,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data === "success") {
+              alert("Profile Updated");
+              history("/home", {
+                state: {
+                  id: email,
+                  name: name,
+                  phoneNo: phoneNo,
+                  rollNo: rollNo,
+                  year: year,
+                  branch: branch,
+                  section: section,
+                },
+              });
+            } else {
+              console.log(res.data);
+              alert("Something");
+            }
+          })
+          .catch((e) => {
+            alert("went");
+            console.log(e);
+          });
+      } catch (e) {
+        console.log(e);
+        alert("wrong");
+      }
     }
   }
 

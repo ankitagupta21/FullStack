@@ -1,5 +1,4 @@
 const express = require("express");
-const router = express.Router();
 const app = express();
 const port = process.env.PORT || 3000;
 const cors = require("cors");
@@ -13,9 +12,10 @@ app.get("/", cors(), (req, res) => {});
 
 const authController = require("./controllers/authController");
 
-router.post("/", authController.login);
-router.post("/register", authController.register);
-module.exports = router;
+app.post("/", authController.login);
+app.post("/register", authController.register);
+app.post("/resetpassword", authController.resetPassword);
+app.post("/editprofile", authController.editProfile);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

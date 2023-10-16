@@ -32,9 +32,7 @@ function Register() {
       setPasswordError("Password should be atleast 6 characters long");
       return false;
     } else if (
-      !password.match(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
-      )
+      !password.match(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)
     ) {
       setPasswordError(
         "Password should contain atleast one uppercase, one lowercase, one special character and one number"
