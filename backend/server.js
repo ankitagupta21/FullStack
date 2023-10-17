@@ -15,7 +15,6 @@ const authController = require("./controllers/authController");
 app.post("/", authController.login);
 app.post("/register", authController.register);
 app.post("/resetpassword", authController.resetPassword);
-app.post("/editprofile", authController.editProfile);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

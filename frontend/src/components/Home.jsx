@@ -18,43 +18,21 @@ function Home() {
           <div className="d-value">{location.state.id}</div>
         </div>
         <div className="detail">
-          <div className="d-text">Phone Number:</div>
-          <div className="d-value">{location.state.phoneNo}</div>
-        </div>
-        <div className="detail">
-          <div className="d-text">Roll No.:</div>
-          <div className="d-value">{location.state.rollNo}</div>
+          <div className="d-text">Roll No:</div>
+          <div className="d-value">25</div>
         </div>
         <div className="detail">
           <div className="d-text">Branch:</div>
-          <div className="d-value">{location.state.branch}</div>
+          <div className="d-value">CSE</div>
         </div>
         <div className="detail">
           <div className="d-text">Year:</div>
-          <div className="d-value">{location.state.year}</div>
+          <div className="d-value">4th</div>
         </div>
         <div className="detail">
           <div className="d-text">Section:</div>
-          <div className="d-value">{location.state.section}</div>
+          <div className="d-value">CS1</div>
         </div>
-      </div>
-
-      <div
-        className="change"
-        style={{ alignSelf: "center", marginTop: "20px", marginBottom: "20px" }}
-      >
-        <Link
-          to={{
-            pathname: "/editprofile",
-            state: {
-              id: email,
-              name: name,
-            },
-          }}
-          className="link"
-        >
-          Edit Profile
-        </Link>
       </div>
     </div>
   );

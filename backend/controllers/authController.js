@@ -36,11 +36,6 @@ async function login(req, res) {
     if (check && check.password === password) {
       res.status(201).json({
         name: check.name,
-        phoneNo: check.phoneNo,
-        rollNo: check.rollNo,
-        year: check.year,
-        branch: check.branch,
-        section: check.section,
         message: "exist",
       });
     } else {
@@ -70,29 +65,8 @@ async function resetPassword(req, res) {
   }
 }
 
-async function editProfile(req, res) {
-  const { email, phoneNo, rollNo, branch, year, section } = req.body;
-  console.log(req.body);
-  try {
-    await user.updateOne(
-      { email: email },
-      {
-        phoneNo: phoneNo,
-        rollNo: rollNo,
-        branch: branch,
-        year: year,
-        section: section,
-      }
-    );
-    res.status(201).json("success");
-  } catch (e) {
-    res.status(500).json("fail");
-  }
-}
-
 module.exports = {
   register,
   login,
   resetPassword,
-  editProfile,
 };

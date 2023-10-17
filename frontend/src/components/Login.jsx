@@ -68,11 +68,6 @@ function Login() {
                 state: {
                   id: email,
                   name: res.data.name,
-                  phoneNo: res.data.phoneNo,
-                  rollNo: res.data.rollNo,
-                  year: res.data.year,
-                  branch: res.data.branch,
-                  section: res.data.section,
                 },
               });
             } else if (res.data === "notexist") {
@@ -80,10 +75,11 @@ function Login() {
             }
           })
           .catch((e) => {
-            alert("wrong details");
+            alert("Something went wrong");
             console.log(e);
           });
       } catch (e) {
+        alert("Something went wrong");
         console.log(e);
       }
     }

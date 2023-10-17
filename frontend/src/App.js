@@ -2,7 +2,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ForgetPassword from "./components/ForgetPassword";
-import EditProfile from "./components/EditProfile";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -15,7 +15,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/resetpassword" element={<ForgetPassword />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/editprofile" element={<EditProfile />} />
         </Routes>
       </Router>
     </div>
