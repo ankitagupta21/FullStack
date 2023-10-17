@@ -69,7 +69,7 @@ function Register() {
     if (isValid) {
       try {
         await axios
-          .post("http://localhost:3000/register", {
+          .post("https://login-signup-ntt8.onrender.com/register", {
             name,
             email,
             password,

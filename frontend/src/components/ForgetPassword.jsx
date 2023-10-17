@@ -64,7 +64,7 @@ function ForgetPassword() {
       setPasswordError("");
       try {
         axios
-          .post("http://localhost:3000/resetpassword", {
+          .post("https://login-signup-ntt8.onrender.com/resetpassword", {
             email,
             password,
           })
