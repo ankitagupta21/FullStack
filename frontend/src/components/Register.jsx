@@ -82,7 +82,7 @@ function Register() {
             }
           })
           .catch((e) => {
-            alert("something went wrong");
+            alert("Wrong Details");
             console.log(e);
           });
       } catch (e) {

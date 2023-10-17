@@ -75,7 +75,7 @@ function Login() {
             }
           })
           .catch((e) => {
-            alert("Something went wrong");
+            alert("Wrong Details");
             console.log(e);
           });
       } catch (e) {
